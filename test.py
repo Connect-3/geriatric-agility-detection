@@ -26,6 +26,10 @@ while True:
 
     height, width, channels = frame.shape
 
+
+    #fix this
+    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+
     
 
     store_colors = frame[start_x:(end_x+1), start_y:(end_y+1), 0:3]
@@ -64,7 +68,7 @@ print("Timer started")
 
 cnt = 0
 
-check_range = 10
+check_range = 30
 
 def check(x, y):
     if(x >= y-check_range and x <= y+check_range ) :
@@ -89,6 +93,8 @@ while True:
     # temp_b = frame[width//2, height//2, 0]
     # temp_g = frame[width//2, height//2, 1]
     # temp_r = frame[width//2, height//2, 2]
+
+    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
 
     if frames_skipped < 5:
         frames_skipped += 1
