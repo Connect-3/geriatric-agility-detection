@@ -18,18 +18,41 @@ end_x = 0
 start_y = 0
 end_y = 0
 
+_, frame = cap.read()
+
+height, width, channels = frame.shape
+
+start_x = width//2 - box_range
+end_x = width//2 + box_range
+start_y = height//2 - box_range
+end_y = height//2 + box_range
+
+
+
+
+# cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+
+
+
+
+
 while True:
 
     _, frame = cap.read()
 
+    height, width, channels = frame.shape
+
+    # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,255,0), 2)
+    cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
+    
+
+
     cv2.imshow("panel", frame)
 
-    height, width, channels = frame.shape
+    
 
 
     #fix this
-    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
-
     
 
     store_colors = frame[start_x:(end_x+1), start_y:(end_y+1), 0:3]
@@ -39,10 +62,9 @@ while True:
     # g = frame[width//2, height//2, 1]
     # r = frame[width//2, height//2, 2]
 
-    start_x = width//2 - box_range
-    end_x = width//2 + box_range
-    start_y = height//2 - box_range
-    end_y = height//2 + box_range
+    
+
+
 
     # print(r, g, b)
 
@@ -59,6 +81,11 @@ print("Background registered")
 while True:
     _, frame = cap.read()
 
+
+    # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+    cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
+
+
     cv2.imshow("panel", frame)
     k = cv2.waitKey(30)
     if k == 27:
@@ -68,7 +95,7 @@ print("Timer started")
 
 cnt = 0
 
-check_range = 30
+check_range = 10
 
 def check(x, y):
     if(x >= y-check_range and x <= y+check_range ) :
@@ -86,6 +113,14 @@ while True:
 
     _, frame = cap.read()
 
+    # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+    cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
+
+
+
+    cv2.circle(frame, (width//2, height//2), 2, (0, 0, 255), 2)
+
+
     cv2.imshow("panel", frame)
 
     height, width, channels = frame.shape
@@ -94,7 +129,7 @@ while True:
     # temp_g = frame[width//2, height//2, 1]
     # temp_r = frame[width//2, height//2, 2]
 
-    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+    cv2.rectangle(frame, (start_x, start_y), (end_x+1, end_y+1), (255,0,0), 2)
 
     if frames_skipped < 5:
         frames_skipped += 1
@@ -112,9 +147,12 @@ while True:
                 current = current and check(temp_store_colors[i][j][k], store_colors[i][j][k])
 
     # current = check(temp_b, temp_g, temp_r)
+
+
     print("Checking")
     if(current != last):
         cnt += 1
+        print(frame[width//2, height//2])
         print("Count increased")
 
     last = current
