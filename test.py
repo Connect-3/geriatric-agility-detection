@@ -27,8 +27,8 @@ end_x = width//2 + box_range
 start_y = height//2 - box_range
 end_y = height//2 + box_range
 
-start_y -= 200
-end_y -= 200
+# start_y -= 200
+# end_y -= 200
 
 
 # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
@@ -56,7 +56,7 @@ while True:
     #fix this
     
     #start from here - saturday
-    store_colors = frame[start_x:(end_x+1), start_y:(end_y+1), 0:3]
+    store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
 
 
     # b = frame[width//2, height//2, 0]
@@ -75,7 +75,8 @@ while True:
 
 # print(r, g, b)
 
-# print(store_colors)
+print(store_colors.size)
+print(store_colors)
 
 print("Background registered")
 
@@ -138,7 +139,7 @@ while True:
 
     # print(r, g, b)
 
-    temp_store_colors = frame[start_x:(end_x+1), start_y:(end_y+1), 0:3]
+    temp_store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
 
     current = True
 
@@ -149,7 +150,10 @@ while True:
 
     # current = check(temp_b, temp_g, temp_r)
 
-
+    print("Start x is", start_x)
+    print("Start y is", start_y)
+    print("End x is", end_x)
+    print("End y is", end_y)
     print("Checking")
     if(current != last):
         cnt += 1
