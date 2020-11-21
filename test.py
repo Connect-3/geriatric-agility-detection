@@ -11,7 +11,7 @@ cap = cv2.VideoCapture(0)
 
 
 
-box_range = 10
+box_range = 30
 
 n = box_range*2+10
 
@@ -108,7 +108,7 @@ print("Timer started")
 
 cnt = 0
 
-check_range = 20
+check_range = 40
 
 def check(x, y):
     if(x >= y-check_range and x <= y+check_range ) :
