@@ -7,11 +7,11 @@ cap = cv2.VideoCapture(0)
 
 # List = [['Geeks', 'For'] , ['Geeks']]
 
-n = 15
+n = 11
 
 store_colors = [[[0]*n]*n]*3
 
-box_range = 20
+box_range = 30
 
 start_x = 0
 end_x = 0
@@ -27,7 +27,8 @@ end_x = width//2 + box_range
 start_y = height//2 - box_range
 end_y = height//2 + box_range
 
-
+start_y -= 200
+end_y -= 200
 
 
 # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
@@ -40,10 +41,10 @@ while True:
 
     _, frame = cap.read()
 
-    height, width, channels = frame.shape
+    # height, width, channels = frame.shape
 
-    # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,255,0), 2)
-    cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
+    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,255,0), 2)
+    # cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
     
 
 
@@ -54,7 +55,7 @@ while True:
 
     #fix this
     
-
+    #start from here - saturday
     store_colors = frame[start_x:(end_x+1), start_y:(end_y+1), 0:3]
 
 
@@ -82,8 +83,8 @@ while True:
     _, frame = cap.read()
 
 
-    # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
-    cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
+    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+    # cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
 
 
     cv2.imshow("panel", frame)
@@ -95,7 +96,7 @@ print("Timer started")
 
 cnt = 0
 
-check_range = 10
+check_range = 20
 
 def check(x, y):
     if(x >= y-check_range and x <= y+check_range ) :
@@ -113,8 +114,8 @@ while True:
 
     _, frame = cap.read()
 
-    # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
-    cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
+    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
+    # cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
 
 
 
