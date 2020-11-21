@@ -14,8 +14,6 @@ box_range = 30
 
 n = box_range*2+10
 
-
-
 store_colors = [[[]*n]*n]*3
 
 start_x = 0
