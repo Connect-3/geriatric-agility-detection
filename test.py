@@ -7,11 +7,15 @@ cap = cv2.VideoCapture(0)
 
 # List = [['Geeks', 'For'] , ['Geeks']]
 
-n = 11
 
-store_colors = [[[0]*n]*n]*3
 
-box_range = 30
+
+
+box_range = 10
+
+n = box_range*2+10
+
+store_colors = [[[]*n]*n]*3
 
 start_x = 0
 end_x = 0
@@ -22,13 +26,19 @@ _, frame = cap.read()
 
 height, width, channels = frame.shape
 
+
 start_x = width//2 - box_range
 end_x = width//2 + box_range
 start_y = height//2 - box_range
+# start_y = height//2 - box_range//2
+
+
 end_y = height//2 + box_range
 
-# start_y -= 200
-# end_y -= 200
+start_y -= 200
+end_y -= 200
+
+# start_y -= 
 
 
 # cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,0,0), 2)
@@ -43,7 +53,7 @@ while True:
 
     # height, width, channels = frame.shape
 
-    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255,255,0), 2)
+    cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (255, 0, 0), 2)
     # cv2.rectangle(frame, (start_x-50, start_y-50), (end_x+50, end_y+50), (255,255,0), 2)
     
 
@@ -52,10 +62,6 @@ while True:
 
     
 
-
-    #fix this
-    
-    #start from here - saturday
     store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
 
 
@@ -75,8 +81,10 @@ while True:
 
 # print(r, g, b)
 
-print(store_colors.size)
-print(store_colors)
+# print(store_colors.shape)
+# print(store_colors)
+
+# print(frame.shape)
 
 print("Background registered")
 
@@ -89,9 +97,12 @@ while True:
 
 
     cv2.imshow("panel", frame)
+    cv2.imshow("color taken", store_colors)
     k = cv2.waitKey(30)
     if k == 27:
         break
+
+
 
 print("Timer started")
 
@@ -105,7 +116,7 @@ def check(x, y):
     else:
         return False
 
-last = False
+last = True
 
 frames_skipped = 0
 
@@ -120,7 +131,7 @@ while True:
 
 
 
-    cv2.circle(frame, (width//2, height//2), 2, (0, 0, 255), 2)
+    # cv2.circle(frame, (width//2, height//2), 2, (0, 0, 255), 2)
 
 
     cv2.imshow("panel", frame)
@@ -133,27 +144,32 @@ while True:
 
     cv2.rectangle(frame, (start_x, start_y), (end_x+1, end_y+1), (255,0,0), 2)
 
-    if frames_skipped < 5:
-        frames_skipped += 1
-        continue
+    # if frames_skipped < 1:
+    #     frames_skipped += 1
+    #     continue
 
     # print(r, g, b)
 
     temp_store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
 
-    current = True
+    # print(temp_store_colors.shape)
 
-    for i in range(0, 11):
-        for j in range(0, 11):
+    current = True
+    for i in range(0, box_range*2):
+        for j in range(0, box_range*2):
             for k in range(0, 3):
                 current = current and check(temp_store_colors[i][j][k], store_colors[i][j][k])
 
+
+    cv2.imshow("Checking", temp_store_colors)
+    # print("Current is ", current)
+    # print("Last was ", last)
     # current = check(temp_b, temp_g, temp_r)
 
-    print("Start x is", start_x)
-    print("Start y is", start_y)
-    print("End x is", end_x)
-    print("End y is", end_y)
+    # print("Start x is", start_x)
+    # print("Start y is", start_y)
+    # print("End x is", end_x)
+    # print("End y is", end_y)
     print("Checking")
     if(current != last):
         cnt += 1
