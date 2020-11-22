@@ -132,7 +132,7 @@ while True:
 
     # cv2.circle(frame, (width//2, height//2), 2, (0, 0, 255), 2)
 
-
+    
     cv2.imshow("panel", frame)
 
     height, width, channels = frame.shape
