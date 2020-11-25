@@ -17,12 +17,15 @@ class MainWindow(QWidget):
         # self.label.setAlignment(QtCore.Qt.AlignCenter)
         # self.label.move(200,500)
         label = QLabel("Geriatric Agility Detection", self)
-        label.setStyleSheet("color: #eeeeee")
+        label.setStyleSheet("color: #CFD8DC")
         # label.setChecked(label.editor.fontUnderline())
-        label.move(230,130)
-        label.setFont(QFont('Comic Sans MS', 20,))
+        label.move(105,105)
+        label.setFont(QFont('Fredoka One', 29))
         # label.setStyleSheet(“background-color: blue;”)
-        self.setStyleSheet("background-color: #686d76;")
+        self.setStyleSheet("""
+        background-color: #5D6D7E;
+        
+        """)
         label.adjustSize()
 
         # self.layout.addWidget(self.label)
@@ -38,9 +41,16 @@ class MainWindow(QWidget):
 
         # creating a push button 
         button = QPushButton("Start", self) 
-        # button.setFixedSize(100,0)
-        button.move(340,250)
-        button.setStyleSheet("background-color: #19d3da")
+        # button.setFont(QFont('Comic Sans MS', 20,)
+        button.setFixedSize(100,35)
+        button.move(290,185)
+        button.setFont(QFont("Fredoka One",13.5))
+        # button.setStyleSheet("color: ")
+        button.setStyleSheet("""
+        background-color: #80CBC4;
+        color: #FDFEFE;
+        border-radius: 5px;
+        """)
         # button.setStyleSheet("border-radius: 1")
         # button.setStyleSheet("border-color: blue")
         # button.setStyleSheet("border-color: #373a40")
@@ -58,9 +68,15 @@ class MainWindow(QWidget):
     def Button2(self): 
 
         # creating a push button 
-        button = QPushButton("Instructions", self) 
-        # button.setFixedSize(100,0)
-        button.move(340,310)
+        button = QPushButton("Guide", self) 
+        button.setFont(QFont("Fredoka One",13.5))
+        button.setFixedSize(100,35)
+        button.move(290,240)
+        button.setStyleSheet("""
+        background-color: #80CBC4;
+        color: #FDFEFE;
+        border-radius: 5px;
+        """)
 
         
         # setting geometry of button 
@@ -72,9 +88,16 @@ class MainWindow(QWidget):
     def Button3(self): 
 
         # creating a push button 
-        button = QPushButton("Instructions", self) 
+        button = QPushButton("Exit", self) 
         # button.setFixedSize(100,0)
-        button.move(340,370)
+        button.setFont(QFont("Fredoka One",13.5))
+        button.setFixedSize(100,35)
+        button.move(290,295)
+        button.setStyleSheet("""
+        background-color: #E57373;
+        color: #FDFEFE;
+        border-radius: 5px;
+        """)
 
         
         # setting geometry of button 
@@ -91,6 +114,6 @@ class MainWindow(QWidget):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mw = MainWindow()
-    mw.resize(800,600)
+    mw.resize(700,450)
     mw.show()
     sys.exit(app.exec_())
