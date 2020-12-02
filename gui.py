@@ -1,41 +1,14 @@
 import sys
 # from PyQt5.QtWidgets import QApplication
 # from PyQt5.QtWidgets import QLabel
-# from PyQt5.QtWidgets import *
-from PyQt5.QtWidgets import * 
 from PyQt5.QtGui import QImage, QIcon, QPixmap, QPalette, QBrush, QColor, QFontDatabase, QFont
-from PyQt5.QtCore import *
+# from PyQt5.QtCore import *
+from PyQt5.QtWidgets import * 
+# from PyQt5.QtWidgets import QInputDialog, QLineEdit, QDialog
+from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit
+from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore
 from test import *
-# import cv2
-# import numpy as np
-
-# cap = cv2.VideoCapture(0)
-
-#Play variables
-# box_range = 30
-# check_range = 40
-
-
-# n = box_range*2+10
-# store_colors = [[[]*n]*n]*3
-
-# _, frame = cap.read()
-
-# height, width, channels = frame.shape
-
-# #Center
-# start_x = width//2 - box_range
-# end_x = width//2 + box_range
-# start_y = height//2 - box_range
-# end_y = height//2 + box_range
-
-# #Moving box up
-# start_y -= 200
-# end_y -= 200
-
-# cnt = 0
-
 
 class MainWindow(QWidget):
 
@@ -60,20 +33,39 @@ class MainWindow(QWidget):
         self.Button1()
         self.Button2()
         self.Button3()
+        # self.ui()
 
+    def getText(self):
+        text, okPressed = QInputDialog.getText(self, "Get text","Your gender and age: \n eg:f24", QLineEdit.Normal, "")
+        if okPressed and text != '':
+            print(text)
+            register_Background()
+
+        
+    # def ui(self)
+    #     self.radioButton_male = QtWidgets.QRadioButton(self.centralwidget) 
+    #     self.radioButton_female = QtWidgets.QRadioButton(self.centralwidget)
+
+    #  def maleselected(self, selected): 
+    #     if selected: 
+    #         self.label.setText("You are male") 
+              
+    # def femaleselected(self, selected): 
+    #     if selected: 
+    #         self.label.setText("You are female")  
 
     def Button1(self): 
 
         button = QPushButton("Start", self)
         button.move(290,185)
-        # button.setFont(QFont("Fredoka One",13.5))
+        button.setFont(QFont("Fredoka One",13.5))
         button.setStyleSheet("""
         background-color: #80CBC4;
         color: #FDFEFE;
         border-radius: 5px;
         left: 100px;
         """)
-        button.clicked.connect(register_Background)
+        button.clicked.connect(self.getText)
 
 
     def Button2(self): 
@@ -115,7 +107,6 @@ class MainWindow(QWidget):
     def registerBackground(self): 
         # printing pressed 
         print("pressed")
-
 
 if __name__ == "__main__":
     # cap = cv2.VideoCapture(0)
