@@ -9,12 +9,45 @@ from PyQt5.QtWidgets import QApplication, QWidget, QInputDialog, QLineEdit
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore
 from test import *
+# from gui2 import *
+
+text=' '
+x=0
+class AnotherWindow(QWidget):
+    """
+    This "window" is a QWidget. If it has no parent, it
+    will appear as a free-floating window as we want.
+    """
+    def __init__(self):
+        super().__init__()
+        self.layout = QVBoxLayout()
+        self.label = QLabel("Another Window")
+        # self.layout.addWidget(self.label)
+        # self.setLayout(layout)
+        self.adjustSize()
+        label = QLabel("Geriatric Agility Detection", self)
+        self.setWindowTitle("My Own Title")
+        self.setLayout(self.layout)
+        print("pokemon")
+
+# def show_new_window():
+#         # app = QApplication(sys.argv)
+#         w = AnotherWindow()
+#         w.resize(700,450)
+#         w.setFixedSize(700, 450)
+#         w.show()
+#         print("hill2")   
+        
 
 class MainWindow(QWidget):
 
+    
+    
     def __init__(self):
         super(MainWindow, self).__init__()
-
+        self.popup = AnotherWindow()
+        self.popup.resize(700,450)
+        self.popup.setFixedSize(700, 450)
         self.layout = QVBoxLayout()
         label = QLabel("Geriatric Agility Detection", self)
         label.setStyleSheet("color: #CFD8DC")
@@ -34,12 +67,22 @@ class MainWindow(QWidget):
         self.Button2()
         self.Button3()
         # self.ui()
-
     def getText(self):
+        global text
         text, okPressed = QInputDialog.getText(self, "Get text","Your gender and age: \n eg:f24", QLineEdit.Normal, "")
         if okPressed and text != '':
-            print(text)
             register_Background()
+            
+            self.popup.show()
+            # def board():
+            #     self.popup.show()
+           
+        # print("hill")
+    
+
+           
+           
+
 
         
     # def ui(self)
@@ -108,8 +151,10 @@ class MainWindow(QWidget):
         # printing pressed 
         print("pressed")
 
+
+
+
 if __name__ == "__main__":
-    # cap = cv2.VideoCapture(0)
     app = QApplication(sys.argv)
     mw = MainWindow()
     mw.resize(700,450)
