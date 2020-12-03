@@ -12,7 +12,7 @@ box_range = 25
 n = box_range*2+10
 check_range = 40
 # last = True
-# cnt = 0
+cnt=0
 
 def check(x, y):
     if(x >= y-check_range and x <= y+check_range ) :
@@ -34,6 +34,8 @@ start_y -= 200
 end_y -= 200
 
 t1=t2=0
+
+# print(last)
 
 
 def register_Background():
@@ -74,7 +76,7 @@ def register_Background():
     t2.start()
     t1.join()
     t2.join()
-    
+    print(cnt)
     
 # def Timer():
 #     i=-1;
@@ -108,13 +110,12 @@ def register_Background():
 #         k = cv2.waitKey(0) & 0xFF
 def loop3(store_colors):
     last = True
-    cnt=0
+    global cnt
     while (t1.is_alive()):
         _, frame = cap.read()
         cv2.rectangle(frame, (start_x, start_y), (end_x, end_y), (157, 179, 69), 2)
-        cv2.imshow("3rd loop", frame)
-        # cv2.imshow("panel", frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3])
-
+        
+        cv2.imshow("panel", frame)
         height, width, channels = frame.shape
         cv2.rectangle(frame, (start_x, start_y), (end_x+1, end_y+1), (157, 179, 69), 2)
         temp_store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
@@ -138,21 +139,19 @@ def loop3(store_colors):
     print("The answer is", cnt//2)
     print("Count is", cnt)
     cv2.destroyAllWindows()
-    # t2.stop()
 #         if k == 27:  
 #             cv2.destroyAllWindows() 
       
 
 
 def Timer():
-    cap = cv2.VideoCapture('tree.mp4') 
    
     # Check if camera opened successfully 
+    cap = cv2.VideoCapture('timer.mp4')
+       
     if (cap.isOpened()== False):  
         print("Error opening video  file") 
-    
-    # Read until video is completed 
-    # cap.set(cv2.CV_CAP_PROP_FPS,int(60))
+
     while(cap.isOpened()): 
         
     # Capture frame-by-frame 
@@ -175,7 +174,6 @@ def Timer():
     
     # Closes all the frames 
     cv2.destroyAllWindows() 
-    # t1.stop()
  
 
      
@@ -192,4 +190,3 @@ def Timer():
 #     t1.join() 
 #     # wait until thread 2 is completely executed 
 #     t2.join() 
-
