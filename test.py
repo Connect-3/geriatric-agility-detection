@@ -5,6 +5,7 @@ import threading
 import sys
 import os
 import trace
+# from gui import *
 
 # cap = cv2.VideoCapture(0)
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) #captureDevice = camera
@@ -76,7 +77,9 @@ def register_Background():
     t2.start()
     t1.join()
     t2.join()
-    print(cnt)
+    print("Cnt in end of register background is {}".format(cnt))
+    return cnt
+    
     
 # def Timer():
 #     i=-1;

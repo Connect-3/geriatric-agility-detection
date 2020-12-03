@@ -55,6 +55,10 @@ class AnotherWindow(QWidget):
 #         w.setFixedSize(700, 450)
 #         w.show()
 #         print("hill2")   
+    def closeEvent(self, event):
+		# reply = QMessageBox.question(self, 'Window Close', 'Are you sure you want to close the window?', QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+        sys.exit(app.exec_())
+
         
 
 class MainWindow(QWidget):
@@ -86,7 +90,8 @@ class MainWindow(QWidget):
         global text
         text, okPressed = QInputDialog.getText(self, "Get text","Your gender and age: \n eg:f24", QLineEdit.Normal, "")
         if okPressed and text != '':
-            register_Background()
+            global x
+            x = register_Background()
             print(cnt)
             print("count is above ")
             self.popup = AnotherWindow()
@@ -194,11 +199,10 @@ def calculation():
 
    
     global msg   
-    global cnt
-    print(cnt) 
-    if(cnt//2 < lower_bound):
+    print(x//2)
+    if(x//2 < lower_bound):
         msg="less than average"
-    elif(cnt//2 > upper_bound):
+    elif(x//2 > upper_bound):
         msg="more than average"
     else:
         msg="average"
@@ -209,6 +213,7 @@ def calculation():
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     mw = MainWindow()
+    print("Cnt in main is {}".format(cnt))
     mw.resize(700,450)
     mw.setFixedSize(700, 450)
     mw.show()
