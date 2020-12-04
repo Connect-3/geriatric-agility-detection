@@ -42,7 +42,7 @@ def register_Background():
         store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
        
         k = cv2.waitKey(30)
-        if k == 27:
+        if k == 13:
             print("Background registered")
             cv2.destroyAllWindows()
             break
@@ -53,7 +53,7 @@ def register_Background():
         cv2.imshow("panel", frame)
         cv2.imshow("color taken", store_colors)
         k = cv2.waitKey(30)
-        if k == 27:
+        if k == 13:
             break
     cv2.destroyAllWindows()
     print("Timer started")
