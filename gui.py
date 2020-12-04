@@ -119,7 +119,7 @@ def calculation():
         upper_bound = female[index][1]
 
     global msg
-       
+
     if(x//2 < lower_bound):
         msg="Less Than Average"
     elif(x//2 > upper_bound):
