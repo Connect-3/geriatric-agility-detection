@@ -19,10 +19,10 @@ class AnotherWindow(QWidget):
         super(AnotherWindow,self).__init__()
         self.layout = QVBoxLayout()
         calculation()
-        label = QLabel("Your result is : {}".format(msg), self)
+        label = QLabel("Your count is {} and Performance is : {}".format(x//2,msg), self)
         label.setStyleSheet("color: #CFD8DC")
         label.setStyleSheet("color: #CFD8DC")
-        label.move(185,95)
+        label.move(105,95)
         label.setFont(QFont('Grandstander Black', 29))
         self.setStyleSheet("""
         background-color: #5D6D7E;
@@ -72,7 +72,7 @@ class MainWindow(QWidget):
             global x
             x = register_Background()
             self.popup = AnotherWindow()
-            self.popup.setFixedSize(1000, 200)
+            self.popup.setFixedSize(1350, 200)
             self.popup.show()
             
     def Button1(self): 
