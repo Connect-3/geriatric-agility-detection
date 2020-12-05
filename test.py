@@ -1,10 +1,5 @@
 import cv2
-import numpy as np
-import time
 import threading 
-import sys
-import os
-import trace
 
 cap = cv2.VideoCapture(0, cv2.CAP_DSHOW) #captureDevice = camera
 box_range = 25
