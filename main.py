@@ -1,3 +1,4 @@
+#all of the imports
 import sys
 from PyQt5.QtGui import QImage, QIcon, QPixmap, QPalette, QBrush, QColor, QFontDatabase, QFont
 from PyQt5.QtWidgets import * 
@@ -6,9 +7,10 @@ from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore
 from Background_Registration import *
 
-text=' '
-x=0
-msg=' '
+
+userInfo = ' '
+count = 0
+displayMessage = ' '
 
 class AnotherWindow(QWidget):
     """
@@ -19,7 +21,7 @@ class AnotherWindow(QWidget):
         super(AnotherWindow,self).__init__()
         self.layout = QVBoxLayout()
         calculation()
-        label = QLabel("Your count is {} and Performance is : {}".format(x//2,msg), self)
+        label = QLabel("Your count is {} and Performance is : {}".format(count//2,displayMessage), self)
         label.setStyleSheet("color: #CFD8DC")
         label.setStyleSheet("color: #CFD8DC")
         label.move(105,95)
@@ -52,11 +54,11 @@ class MainWindow(QWidget):
         self.Button1()
         self.Button2()
            
-    def getText(self):
+    def getuserInfo(self):
         font = QFont()
         font.setFamily("Grandstander Black")
         font.setPointSize(10)
-        global text
+        global userInfo
         inputDialog = QInputDialog(None)
         inputDialog.setInputMode(QInputDialog.TextInput)
         inputDialog.setWindowTitle('Enter Your Details')
@@ -67,10 +69,10 @@ class MainWindow(QWidget):
         color: #17202A
         """)
         okPressed=inputDialog.exec()
-        text=inputDialog.textValue()
-        if okPressed and text != '':
-            global x
-            x = register_Background()
+        userInfo=inputDialog.textValue()
+        if okPressed and userInfo != '':
+            global count
+            count = register_Background()
             self.popup = AnotherWindow()
             self.popup.setFixedSize(1350, 200)
             self.popup.show()
@@ -85,7 +87,7 @@ class MainWindow(QWidget):
         border-radius: 5px;
         left: 100px;
         """)
-        button.clicked.connect(self.getText)
+        button.clicked.connect(self.getuserInfo)
 
     def Button2(self): 
         button = QPushButton("Exit", self) 
@@ -103,13 +105,19 @@ class MainWindow(QWidget):
         sys.exit(app.exec_())
 
 def calculation():
-    gender=text[0]
-    print(text)
-    age = int(text[1:3])
+    gender=userInfo[0]
+    print(userInfo)
+    age = int(userInfo[1:3])
     lower_bound=' '
     upper_bound=' '
     male = [(14, 19), (12, 18), (12, 17), (11, 17), (10, 15), (8, 14), (7, 12)]
-    female = [(12,17),(11,16),(10,15),(10,15),(9,14),(8,13),(4,11)]
+    female = [(12, 17), (11, 16), (10, 15), (10, 15), (9, 14), (8, 13), (4, 11)]
+    #making sure that age stays between 60 and 95 so we can take the correct index
+    if(age < 60):
+         age = 60
+    if(age > 95):
+         age = 95
+    #taking appropriate index 
     index = (age-60)//5
     if gender=='m':
         lower_bound = male[index][0]
@@ -118,14 +126,14 @@ def calculation():
         lower_bound = female[index][0]
         upper_bound = female[index][1]
 
-    global msg
+    global displayMessage
 
-    if(x//2 < lower_bound):
-        msg="Less Than Average"
-    elif(x//2 > upper_bound):
-        msg="More Than Average"
+    if(count//2 < lower_bound):
+        displayMessage="Less Than Average"
+    elif(count//2 > upper_bound):
+        displayMessage="More Than Average"
     else:
-        msg="Average"
+        displayMessage="Average"
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
