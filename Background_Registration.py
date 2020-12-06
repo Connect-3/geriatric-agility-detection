@@ -103,7 +103,7 @@ def loop3(store_colors):
         temp_store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
 
         current = True
-        #if even one pixel does not match with the corresponding pixel in the background
+        #if even 1 pixel does not match with the corresponding pixel in the background
         #we registered earlier then current will be False
         for i in range(0, box_range*2):
             for j in range(0, box_range*2):
