@@ -20,12 +20,12 @@ def check(x, y):
     else:
         return False
 
-#matrix for registration of background color
+#matrix for registration of background color 
 store_colors = [[[]*n]*n]*3
 _, frame = cap.read()
 height, width, channels = frame.shape
 
-#setting actual coordinates of the box for checking color
+#setting actual coordinates of the box for checking colour
 start_x = width//2 - box_range
 end_x = width//2 + box_range
 start_y = height//2 - box_range
@@ -103,7 +103,7 @@ def loop3(store_colors):
         temp_store_colors = frame[ start_y:(end_y+1) , start_x:(end_x+1), 0:3]
 
         current = True
-        #if even 1 pixel does not match with the corresponding pixel in the background
+        #if even one pixel does not match with the corresponding pixel in the background
         #we registered earlier then current will be False
         for i in range(0, box_range*2):
             for j in range(0, box_range*2):
