@@ -126,7 +126,7 @@ def loop3(store_colors):
         if k == 27:
             break
     print("The answer is", cnt//2)
-    print("Count is", cnt)
+    print("Count is ", cnt)
     cv2.destroyAllWindows()
 
 def Timer():
